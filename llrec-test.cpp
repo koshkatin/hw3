@@ -67,8 +67,11 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
-
+struct isOdd{
+    bool operator()(int val){
+        return val % 2 != 0;
+    }
+};
 
 
 int main(int argc, char* argv[])
@@ -86,8 +89,23 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller, *larger;
 
+    llpivot(head, smaller, larger, 10);
 
+    print(smaller);
+    print(larger);
+
+    
+    Node* head2 = readList(argv[1]);
+    isOdd pred;
+    Node* newList = llfilter(head2, pred);
+    print(newList);
+
+    // Deallocate memory
+    // dealloc(smaller);
+    // dealloc(larger);
+    // dealloc(head2);
 
     
     return 0;

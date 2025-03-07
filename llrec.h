@@ -31,7 +31,7 @@ struct Node
  * MUST RUN IN O(n) where n is the number of nodes in the input list
  * ==============================================================
  *
- * @pre: smaller and larger may containing garbage (do NOT have
+ * @pre: smaller and larger may contain garbage (do NOT have
  *       to be NULL)
  *
  * @param[inout] head
@@ -83,8 +83,17 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    if (head == NULL) return NULL; 
 
-
+    Node* next = llfilter(head->next, pred);
+    if (pred(head->val)) {
+        delete head;
+        return next;
+    } 
+    else { 
+        head->next = next;
+        return head;
+    }
 }
 
 #endif
